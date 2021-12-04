@@ -41,10 +41,7 @@ fn day_one_part_two() {
     let mut inc_count = 0;
 
     for x in 3..nums.len() {
-        let w1 = nums[x-3]+nums[x-2]+nums[x-1];
-        let w2 = nums[x-2]+nums[x-1]+nums[x];
-        
-        if w2 > w1 {
+        if nums[x] > nums[x-3] {
             inc_count += 1;
         }
     }
