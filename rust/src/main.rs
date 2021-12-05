@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 
 fn day_one_part_one() {
     let nums = include_str!("../inputs/day1.input")
@@ -342,6 +343,169 @@ fn day_four_part_two() {
     }
 }
 
+struct Line {
+    x1: usize,
+    y1: usize,
+    x2: usize,
+    y2: usize
+}
+
+impl Display for Line {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "({}, {})->({}, {})", self.x1, self.y1, self.x2, self.y2)
+    }
+}
+
+fn parse_day_five(input : &Vec<&str>) -> Vec<Line> {
+    let mut lines : Vec<Line> = Vec::new();
+    
+    for i in input {
+        let parts : Vec<&str> = i.split(" ").collect();
+        let p1 : Vec<usize> = parts[0].split(",").map(|n| n.parse::<usize>().unwrap()).collect();
+        let p2 : Vec<usize> = parts[2].split(",").map(|n| n.parse::<usize>().unwrap()).collect();
+        if p1[0] == p2[0] {
+            if p2[1] > p1[1] {
+                lines.push(Line {
+                    x1: p1[0],
+                    y1: p1[1],
+                    x2: p2[0],
+                    y2: p2[1]
+                });
+            } else {
+                lines.push(Line {
+                    x1: p2[0],
+                    y1: p2[1],
+                    x2: p1[0],
+                    y2: p1[1]
+                });
+            }
+        } else {
+            if p2[0] > p1[0] {
+                lines.push(Line {
+                    x1: p1[0],
+                    y1: p1[1],
+                    x2: p2[0],
+                    y2: p2[1]
+                });
+            } else {
+                lines.push(Line {
+                    x1: p2[0],
+                    y1: p2[1],
+                    x2: p1[0],
+                    y2: p1[1]
+                });
+            }
+        } 
+    }
+    
+    return lines;
+}
+
+fn print_grid(grid : &Vec<Vec<usize>>, x : usize, y : usize) {
+    for i in 0 .. y {
+        for j in 0 .. x {
+            print!("{}",grid[i][j]);
+        }
+        println!();
+    }
+} 
+
+
+
+fn day_five_part_one() {
+    let input = include_str!("../inputs/day5.input").lines()
+        .collect::<Vec<&str>>();
+    let lines : Vec<Line> = parse_day_five(&input);
+
+    let mut grid : Vec<Vec<usize>> = Vec::new();
+
+    for i in 0 .. 1000 {
+        grid.push(Vec::new());
+        for _ in 0 .. 1000 {
+            grid[i].push(0);
+        }
+    }
+
+    for line in lines {
+        if line.x1 == line.x2 || line.y1 == line.y2 {
+            for i in line.y1..=line.y2 {
+                for j in line.x1..=line.x2 {
+                    grid[i][j] += 1;
+                }
+            }
+        } else {
+            
+        }
+    }
+
+    let mut count : usize = 0;
+    for i in 0 .. 1000 {
+        for j in 0 .. 1000 {
+            if grid[i][j] > 1 {
+                count += 1;
+            }
+        }
+    }
+
+    println!("day 5, part 1: {}", count);
+}
+
+fn day_five_part_two() {
+    let input = include_str!("../inputs/day5.input").lines()
+        .collect::<Vec<&str>>();
+    let lines : Vec<Line> = parse_day_five(&input);
+
+    let mut grid : Vec<Vec<usize>> = Vec::new();
+
+    for i in 0 .. 1000 {
+        grid.push(Vec::new());
+        for _ in 0 .. 1000 {
+            grid[i].push(0);
+        }
+    }
+
+    for line in lines {
+        if line.x1 == line.x2 || line.y1 == line.y2 {
+            for i in line.y1..=line.y2 {
+                for j in line.x1..=line.x2 {
+                    grid[i][j] += 1;
+                }
+            }
+        } else {
+            if line.y1 > line.y2 {
+                let mut x = line.x1;
+                let mut y = line.y1;
+                while x != line.x2 && y != line.y2 {
+                    grid[y][x] += 1;
+                    x += 1;
+                    y -= 1;
+                }
+                grid[y][x] += 1;
+            } else {
+                let mut x = line.x1;
+                let mut y = line.y1;
+                while x != line.x2 && y != line.y2 {
+                    grid[y][x] += 1;
+                    x += 1;
+                    y += 1;
+                }
+                grid[y][x] += 1;
+            }
+        }
+    }
+
+    let mut count : usize = 0;
+    for i in 0 .. 1000 {
+        for j in 0 .. 1000 {
+            if grid[i][j] > 1 {
+                count += 1;
+            }
+        }
+    }
+
+    println!("day 5, part 2: {}", count);
+}
+
 fn main() {
     day_one_part_one();
     day_one_part_two();
@@ -351,4 +515,6 @@ fn main() {
     day_three_part_two();
     day_four_part_one();
     day_four_part_two();
+    day_five_part_one();
+    day_five_part_two();
 }
