@@ -1,4 +1,7 @@
 use std::fmt::{Display, Formatter};
+use std::iter;
+use nom::*;
+use atoi::atoi;
 
 fn day_one_part_one() {
     let nums = include_str!("../inputs/day1.input")
@@ -401,10 +404,10 @@ fn parse_day_five(input : &Vec<&str>) -> Vec<Line> {
     return lines;
 }
 
-fn print_grid(grid : &Vec<Vec<usize>>, x : usize, y : usize) {
+fn print_grid(grid : &Vec<u8>, x : usize, y : usize) {
     for i in 0 .. y {
         for j in 0 .. x {
-            print!("{}",grid[i][j]);
+            print!("{}",grid[i*y+j]);
         }
         println!();
     }
@@ -506,6 +509,90 @@ fn day_five_part_two() {
     println!("day 5, part 2: {}", count);
 }
 
+//this soln from:
+//https://github.com/timvisee/advent-of-code-2021/blob/master/day05a/src/main.rs
+fn day_five_part_one_optimized() {
+    let map = include_bytes!("../inputs/day5.input")
+        .split(|b| *b == b'\n')
+        .map(|entry| {
+            let ((x, y), (xx, yy)) = line(entry).unwrap().1;
+            (x.min(xx), y.min(yy), x.max(xx), y.max(yy))
+        })
+        .filter(|(x, y, xx, yy)| x == xx || y == yy)
+        .fold(vec![0u8; 1000 * 1000], |mut map, (x, y, xx, yy)| {
+            if x == xx {
+                (y..=yy).for_each(|y| map[(x + y * 1000) as usize] += 1);
+            } else {
+                (x..=xx).for_each(|x| map[(x + y * 1000) as usize] += 1);
+            }
+            map
+        })
+        .into_iter()
+        .filter(|c| *c >=2)
+        .count();
+
+        println!("day 5, part 1: {}", map);
+}
+
+//my butchering of part one optimized:
+fn day_five_part_two_optimized_one() {
+    let map = include_bytes!("../inputs/day5.input")
+        .split(|b| *b == b'\n')
+        .map(|entry| {
+            let ((x, y), (xx, yy)) = line(entry).unwrap().1;
+            if (x == xx && y > yy) || (y == yy && x > xx) || (x != xx && y != yy && x > xx) {
+                (xx, yy, x, y)
+            }  else {
+                (x, y, xx, yy)   
+            }
+        })
+        .fold(vec![0u8; 1000 * 1000], |mut map, (x, y, xx, yy)| {
+            if x == xx {
+                (y..=yy).for_each(|y| map[(x + y * 1000) as usize] += 1);
+            } else if y == yy {
+                (x..=xx).for_each(|x| map[(x + y * 1000) as usize] += 1);
+            } else {
+                let mut x1 = x;
+                let mut y1 = y;
+                if y > yy {
+                    (yy..=y).for_each(|y| { map[(x1 + y1 * 1000) as usize] += 1; x1 += 1; y1 -= 1; });
+                } else {
+                    (y..=yy).for_each(|y| { map[(x1 + y1 * 1000) as usize] += 1; x1 += 1; y1 += 1; });    
+                }
+            }
+            map
+        });
+    
+    let count = map.into_iter()
+        .filter(|c| *c >=2)
+        .count();
+
+    println!("day 5, part 2: {}", count);
+}
+
+//This soln from: 
+// https://github.com/timvisee/advent-of-code-2021/blob/master/day05b/src/main.rs
+fn day_five_part_two_optimized_two() {
+    let map = include_bytes!("../inputs/day5.input")
+        .split(|b| *b == b'\n')
+        .fold(
+        vec![0u8; 1000 * 1000],
+        |mut map, entry| {
+            let ((x, y), (xx, yy)) = line(entry).unwrap().1;
+            let range =
+                |a: isize, b: isize| iter::successors(Some(a), move |n| Some(n + (b - a).signum()));
+            range(x, xx)
+                .cycle()
+                .zip(range(y, yy).cycle())
+                .take((x - xx).abs().max((y - yy).abs()) as usize + 1)
+                .for_each(|(x, y)| map[(x + y * 1000) as usize] += 1);
+            map
+        },
+    );
+
+    println!("day 5, part 2: {}", map.into_iter().filter(|c| *c >= 2).count());
+}
+
 fn main() {
     day_one_part_one();
     day_one_part_two();
@@ -517,4 +604,12 @@ fn main() {
     day_four_part_two();
     day_five_part_one();
     day_five_part_two();
+    day_five_part_one_optimized();
+    day_five_part_two_optimized_one();
+    day_five_part_two_optimized_two();
+    
 }
+
+named!(isize<&[u8], isize>, map_opt!(nom::character::complete::digit1, atoi));
+named!(coord<&[u8], (isize, isize)>, separated_pair!(isize, char!(','), isize));
+named!(line<&[u8], ((isize, isize), (isize, isize))>, separated_pair!(coord, tag!(" -> "), coord));
