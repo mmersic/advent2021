@@ -1,4 +1,5 @@
 #![feature(array_windows)]
+#![feature(drain_filter)]
 
 mod day_01;
 mod day_02;
@@ -19,7 +20,10 @@ fn all() {
     day_02::part_two();
     day_02::part_two_optimized();
     day_03::part_one();
+    day_03::part_one_optimized();
     day_03::part_two();
+    day_03::part_two_optimized();
+    day_03::part_two_final();
     day_04::part_one();
     day_04::part_two();
     day_05::part_one();
