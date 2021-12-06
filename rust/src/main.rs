@@ -29,12 +29,15 @@ fn all() {
     day_04::part_one_final();
     day_04::part_two();
     day_05::part_one();
-    day_05::part_two();
     day_05::part_one_optimized();
+    day_05::part_two();
     day_05::part_two_optimized_one();
     day_05::part_two_optimized_two();
     day_06::part_one();
+    day_06::part_one_final();
     day_06::part_two();
+    day_06::part_two_optimized();
+    day_06::part_two_final();
 }
 
 fn main() {
