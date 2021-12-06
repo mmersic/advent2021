@@ -141,3 +141,65 @@ pub fn part_two() {
         }
     }
 }
+
+
+
+//This is from:
+//https://github.com/timvisee/advent-of-code-2021/blob/master/day04a/src/main.rs
+//
+//How marking is done:
+//Order of operations here: *m |= 1 << *i)
+//First shift 1 to the left i places, then or the result of the shift with m.  This "marks" the ith position on the board.
+//
+//What is this: (mark >> i & 1 ^ 1) * n as u32 * num as u32)
+//Basically, a compact if statement.  If the ith position is marked, set to 1,
+//then the result of the xor will be 0 and the result of the expression is 0,
+//otherwise xor will be 1 and the result of the expression is n * num, which is subsequently
+//summed for the answer.
+//Shift mark to the right i times to but the ith bit in position 1.
+//And the result with 1, so if the ith position was marked the result here is 1, 0 otherwise
+//xor the result with 1, so if the ith position was marked, the result here is 0, 1 otherwise
+//multiply the result (either 0 or 1) times n (the number on the board)
+//multiply the result times num (the winning number).
+use std::collections::BTreeMap;
+pub fn part_one_final() {
+    const ROW: u32 = 0b11111;
+    const COL: u32 = 0b100001000010000100001;
+
+    let (nums, boards) = include_str!("../inputs/day4.input").split_once("\n\n").unwrap();
+
+    //vector of pair of (map of number on board to position of number on board, and u32 that starts at 0 - this is marks on the board)
+    let mut boards: Vec<(BTreeMap<u8, usize>, u32)> = boards
+        .split("\n\n")
+        .map(|b| {
+            (
+                b.split_whitespace()
+                    .enumerate()
+                    .map(|(i, n)| (n.parse().unwrap(), i))
+                    .collect(),
+                0,
+            )
+        })
+        .collect();
+
+    let (board, mark, num) = nums
+        .split(',')
+        .map(|n| n.parse().unwrap())
+        .find_map(|n| {
+            boards.iter_mut().find_map(|(b, m)| {
+                b.get(&n)
+                    .map(|i| *m |= 1 << *i)//i is the position of n on this board. m is the marks. All the marks fit in u32 since there are on 25 of them at most.
+                    .filter(|_| (0..5).any(|i| *m >> i & COL == COL || *m >> (i * 5) & ROW == ROW))//check each column and each row for a bingo by shifting the marks and comparing with the COL and ROW winning patterns.
+                    .map(|_| (b.clone(), *m, n)) //tuple of (clone the winning board, it's marks, and the winning number).
+            })
+        })
+        .unwrap();
+
+    println!(
+        "day 4, part 1: {}",
+        board
+            .into_iter()
+            .map(|(n, i)| (mark >> i & 1 ^ 1) * n as u32 * num as u32)
+            .sum::<u32>()
+    );
+}

@@ -25,6 +25,7 @@ fn all() {
     day_03::part_two_optimized();
     day_03::part_two_final();
     day_04::part_one();
+    day_04::part_one_final();
     day_04::part_two();
     day_05::part_one();
     day_05::part_two();
@@ -34,6 +35,6 @@ fn all() {
 }
 
 fn main() {
-    all();
+    day_04::part_one_final();
 }
 
