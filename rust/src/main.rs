@@ -6,6 +6,7 @@ mod day_02;
 mod day_03;
 mod day_04;
 mod day_05;
+mod day_06;
 
 fn all() {
     day_01::part_one();
@@ -32,9 +33,11 @@ fn all() {
     day_05::part_one_optimized();
     day_05::part_two_optimized_one();
     day_05::part_two_optimized_two();
+    day_06::part_one();
+    day_06::part_two();
 }
 
 fn main() {
-    day_04::part_one_final();
+    all();
 }
 
