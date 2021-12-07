@@ -1,5 +1,6 @@
 #![feature(array_windows)]
 #![feature(drain_filter)]
+#![feature(int_abs_diff)]
 
 mod day_01;
 mod day_02;
@@ -7,7 +8,9 @@ mod day_03;
 mod day_04;
 mod day_05;
 mod day_06;
+mod day_07;
 
+#[allow(dead_code)]
 fn all() {
     day_01::part_one();
     day_01::part_one_optimized();
@@ -38,6 +41,8 @@ fn all() {
     day_06::part_two();
     day_06::part_two_optimized();
     day_06::part_two_final();
+    day_07::part_one();
+    day_07::part_two();
 }
 
 fn main() {
