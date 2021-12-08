@@ -47,7 +47,6 @@ fn all() {
 }
 
 fn main() {
-    day_07::part_two();
-    day_07::part_two_optimized();
+    all()
 }
 
