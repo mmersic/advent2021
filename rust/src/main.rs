@@ -1,6 +1,5 @@
 #![feature(array_windows)]
 #![feature(drain_filter)]
-#![feature(int_abs_diff)]
 
 mod day_01;
 mod day_02;
@@ -42,10 +41,13 @@ fn all() {
     day_06::part_two_optimized();
     day_06::part_two_final();
     day_07::part_one();
+    day_07::part_one_optimized();
     day_07::part_two();
+    day_07::part_two_optimized();
 }
 
 fn main() {
-    all();
+    day_07::part_two();
+    day_07::part_two_optimized();
 }
 
