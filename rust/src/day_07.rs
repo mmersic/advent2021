@@ -1,6 +1,8 @@
 use std::collections::HashMap;
+use took::Timer;
 
 pub fn part_one() {
+    let timer = Timer::new();
     let nums = include_str!("../inputs/day7.input").split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
     let max = nums.iter().max_by(|x, y| x.cmp(y)).unwrap();
     let mut memo : HashMap<i32, i32> = HashMap::new();
@@ -16,11 +18,12 @@ pub fn part_one() {
         a.1.cmp(b.1)
     }).unwrap();
     
-    println!("day 7, part 1: {}", min.1);
+    println!("day 7, part 1: {} in time {}us", min.1, timer.took().as_std().as_micros());
     
 }
 
 pub fn part_two() {
+    let timer = Timer::new();
     let nums = include_str!("../inputs/day7.input").split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
     let max = nums.iter().max_by(|x, y| x.cmp(y)).unwrap();
     let mut memo : HashMap<i32, i32> = HashMap::new();
@@ -37,11 +40,12 @@ pub fn part_two() {
         a.1.cmp(b.1)
     }).unwrap();
 
-    println!("day 7, part 2: {}", min.1);
+    println!("day 7, part 2: {} in time {}us", min.1, timer.took().as_std().as_micros());
 
 }
 
 pub fn part_one_optimized() {
+    let timer = Timer::new();
     let mut nums = include_str!("../inputs/day7.input").split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
     nums.sort();
     
@@ -49,13 +53,14 @@ pub fn part_one_optimized() {
     let med = nums.get(mid).unwrap();
     let result : i32 = nums.iter().map(|x| (x-med).abs()).sum();
     
-    println!("day 7, part 1: {}", result);
+    println!("day 7, part 1: {} in time {}us", result, timer.took().as_std().as_micros());
 }
 
 //this soln from:
 //https://github.com/timvisee/advent-of-code-2021/blob/master/day07b/src/main.rs
 pub fn part_two_optimized() {
-    let mut nums = include_str!("../inputs/day7.input").split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
+    let timer = Timer::new();
+    let nums = include_str!("../inputs/day7.input").split(",").map(|x| x.parse().unwrap()).collect::<Vec<i32>>();
 
     let mean = (nums.iter().sum::<i32>() / nums.len() as i32..).take(2);
     
@@ -66,5 +71,5 @@ pub fn part_two_optimized() {
         }).sum()
     }).min().unwrap();
     
-    println!("day 7, part 2: {}", result);
+    println!("day 7, part 2: {} in time {}us", result, timer.took().as_std().as_micros());
 }
