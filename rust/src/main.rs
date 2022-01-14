@@ -21,6 +21,11 @@ mod day_14;
 mod day_15;
 mod day_16;
 mod day_17;
+mod day_18;
+mod day_19;
+mod day_20;
+mod day_21;
+mod day_22;
 
 #[allow(dead_code)]
 fn all() {
@@ -83,10 +88,20 @@ fn all() {
     day_16::part_two();
     day_16::part_two();
     day_16::part_two_streaming();
+    day_17::part_one();
+    day_17::part_two();
+    day_18::part_one();
+    day_18::part_two();
+    day_19::part_one_two();
+    day_19::part_one_two();
+    day_20::part_one();
+    day_20::part_two();
+    day_21::part_one();
+    day_21::part_two();
 }
 
 fn main() {
-    day_17::part_one();
-    day_17::part_two();
+    day_22::part_one();
+    day_22::part_two();
 }
 

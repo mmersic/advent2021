@@ -1,0 +1,145 @@
+iters: 0, remaining: 35
+overlaps: 12, found overlap of point (1648, 1266, 1000)
+WINNER___WINNER: 12
+found 0, 1
+iters: 0, remaining: 34
+overlaps: 12, found overlap of point (1648, 1266, 1000)
+WINNER___WINNER: 12
+found 0, 1
+iters: 0, remaining: 33
+overlaps: 12, found overlap of point (15, 187, 8)
+WINNER___WINNER: 12
+found 0, 19
+iters: 0, remaining: 32
+overlaps: 12, found overlap of point (1482, 114, -156)
+WINNER___WINNER: 12
+found 0, 28
+iters: 0, remaining: 31
+overlaps: 12, found overlap of point (1637, 194, 2535)
+WINNER___WINNER: 12
+found 1, 1
+iters: 0, remaining: 30
+overlaps: 12, found overlap of point (283, 327, 1127)
+WINNER___WINNER: 12
+found 1, 9
+iters: 0, remaining: 29
+overlaps: 12, found overlap of point (-1090, -46, 53)
+WINNER___WINNER: 12
+found 3, 22
+iters: 0, remaining: 28
+overlaps: 12, found overlap of point (-983, -148, 104)
+WINNER___WINNER: 12
+found 3, 24
+iters: 0, remaining: 27
+overlaps: 12, found overlap of point (1520, 286, 2551)
+WINNER___WINNER: 12
+found 5, 22
+iters: 0, remaining: 26
+overlaps: 12, found overlap of point (368, -1325, 2398)
+WINNER___WINNER: 12
+found 6, 4
+iters: 0, remaining: 25
+overlaps: 12, found overlap of point (383, -1152, 843)
+WINNER___WINNER: 12
+found 6, 10
+iters: 0, remaining: 24
+overlaps: 12, found overlap of point (368, -1320, 939)
+WINNER___WINNER: 12
+found 6, 20
+iters: 0, remaining: 23
+overlaps: 12, found overlap of point (-1090, -46, 53)
+WINNER___WINNER: 12
+found 7, 17
+iters: 0, remaining: 22
+overlaps: 12, found overlap of point (430, 1103, -1390)
+WINNER___WINNER: 12
+found 7, 18
+iters: 0, remaining: 21
+overlaps: 12, found overlap of point (-2318, 1128, 1139)
+WINNER___WINNER: 12
+found 8, 9
+iters: 0, remaining: 20
+overlaps: 12, found overlap of point (-1073, 1117, 826)
+WINNER___WINNER: 12
+found 8, 17
+iters: 0, remaining: 19
+overlaps: 12, found overlap of point (1520, 286, 2551)
+WINNER___WINNER: 12
+found 9, 13
+iters: 0, remaining: 18
+overlaps: 12, found overlap of point (308, 69, 2501)
+WINNER___WINNER: 12
+found 10, 4
+iters: 0, remaining: 17
+overlaps: 12, found overlap of point (1323, 184, 3210)
+WINNER___WINNER: 12
+found 10, 9
+iters: 0, remaining: 16
+overlaps: 12, found overlap of point (-681, -1098, 2283)
+WINNER___WINNER: 12
+found 12, 12
+iters: 0, remaining: 15
+overlaps: 12, found overlap of point (-1983, 310, -1080)
+WINNER___WINNER: 12
+found 13, 6
+iters: 0, remaining: 14
+overlaps: 12, found overlap of point (-3573, 1567, 809)
+WINNER___WINNER: 12
+found 15, 9
+iters: 0, remaining: 13
+overlaps: 12, found overlap of point (-3501, 195, 1275)
+WINNER___WINNER: 12
+found 15, 9
+iters: 0, remaining: 12
+overlaps: 12, found overlap of point (-2036, 1235, 2358)
+WINNER___WINNER: 12
+found 16, 0
+iters: 0, remaining: 11
+overlaps: 12, found overlap of point (-2333, 1181, 1283)
+WINNER___WINNER: 12
+found 16, 7
+iters: 0, remaining: 10
+overlaps: 12, found overlap of point (2532, -1000, 3247)
+WINNER___WINNER: 12
+found 17, 9
+iters: 0, remaining: 9
+overlaps: 12, found overlap of point (308, 69, 2501)
+WINNER___WINNER: 12
+found 18, 4
+iters: 0, remaining: 8
+overlaps: 12, found overlap of point (-880, 28, 2034)
+WINNER___WINNER: 12
+found 18, 5
+iters: 0, remaining: 7
+overlaps: 12, found overlap of point (-3361, 1467, 117)
+WINNER___WINNER: 12
+found 22, 5
+iters: 0, remaining: 6
+overlaps: 12, found overlap of point (-2124, 1176, 2336)
+WINNER___WINNER: 12
+found 24, 2
+iters: 0, remaining: 5
+overlaps: 12, found overlap of point (-1887, 1294, 3210)
+WINNER___WINNER: 12
+found 24, 4
+iters: 0, remaining: 4
+overlaps: 12, found overlap of point (-854, 2609, 2375)
+WINNER___WINNER: 12
+found 25, 1
+iters: 0, remaining: 3
+overlaps: 12, found overlap of point (-1137, 2625, 1061)
+WINNER___WINNER: 12
+found 25, 1
+iters: 0, remaining: 2
+overlaps: 12, found overlap of point (-3093, 2479, 1139)
+WINNER___WINNER: 12
+found 29, 0
+iters: 0, remaining: 1
+overlaps: 12, found overlap of point (-4485, 1297, -272)
+WINNER___WINNER: 12
+found 29, 0
+found points: 408
+day 19 part 1: 408 in time 91092ms
+day 19 part 2: 2 in time 1us
+
+Process finished with exit code 0
